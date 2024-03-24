@@ -1,5 +1,6 @@
 --[[
 
+Intro {{{
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -82,6 +83,7 @@ I hope you enjoy your Neovim journey,
 - TJ
 
 P.S. You can delete this when you're done too. It's your config now! :)
+}}}
 --]]
 
 -- BASICS {{{
@@ -772,6 +774,9 @@ require('lazy').setup({
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+    opts = {
+      transparent = true,
+    },
     -- }}}
   },
 
