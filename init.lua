@@ -84,6 +84,8 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- BASICS {{{
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -91,7 +93,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -161,6 +163,10 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- }}}
+
+-- KEYMAPS {{{
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -204,6 +210,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- }}}
+
+-- PLUGINS {{{
+
+-- manager{{{
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -212,6 +224,8 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+
+-- }}}
 
 -- [[ Configure and install plugins ]]
 --
@@ -247,6 +261,7 @@ require('lazy').setup({
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    -- {{{
     opts = {
       signs = {
         add = { text = '+' },
@@ -256,6 +271,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+    -- }}}
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -275,6 +291,7 @@ require('lazy').setup({
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
+    -- which-key {{{
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
@@ -288,6 +305,7 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       }
     end,
+    -- }}}
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -299,6 +317,7 @@ require('lazy').setup({
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
+    -- {{{
     event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
@@ -400,10 +419,12 @@ require('lazy').setup({
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
     end,
+    -- }}}
   },
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    -- {{{
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       'williamboman/mason.nvim',
@@ -596,10 +617,12 @@ require('lazy').setup({
         },
       }
     end,
+    -- }}}
   },
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    -- {{{
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -622,10 +645,12 @@ require('lazy').setup({
         -- javascript = { { "prettierd", "prettier" } },
       },
     },
+    -- }}}
   },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
+    -- {{{
     event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
@@ -727,6 +752,7 @@ require('lazy').setup({
         },
       }
     end,
+    -- }}}
   },
 
   { -- You can easily change to a different colorscheme.
@@ -735,6 +761,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
+    -- {{{
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -745,6 +772,7 @@ require('lazy').setup({
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+    -- }}}
   },
 
   -- Highlight todo, notes, etc in comments
@@ -752,6 +780,7 @@ require('lazy').setup({
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    --- {{{
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -786,9 +815,11 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
+    --- }}}
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    -- {{{
     build = ':TSUpdate',
     opts = {
       ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
@@ -816,6 +847,7 @@ require('lazy').setup({
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
+    -- }}}
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
@@ -859,5 +891,7 @@ require('lazy').setup({
   },
 })
 
+-- }}}
+
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et foldmethod=marker:
