@@ -228,7 +228,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- PLUGINS {{{
 
--- manager{{{
+-- manager {{{
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -306,7 +306,7 @@ require('lazy').setup({
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    -- which-key {{{
+    -- {{{
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
@@ -320,29 +320,6 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       }
     end,
-    -- }}}
-  },
-
-  -- NOTE: Plugins can be configured to establish key bindings
-  --
-  -- tmux-navigator: enable seamless C-hjkl navigation between nvim and tmux panes
-  {
-    'christoomey/vim-tmux-navigator',
-    -- {{{
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-    },
-    keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-    },
     -- }}}
   },
 
@@ -816,17 +793,6 @@ require('lazy').setup({
     -- }}}
   },
 
-  { -- lualine
-    'nvim-lualine/lualine.nvim',
-    -- {{{
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      -- see more themes at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-      options = { theme = 'codedark' },
-    },
-    -- }}}
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -906,6 +872,42 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+  --
+  -- NOTE: For now, I'm trying to keep everything in this file
+
+  -- NOTE: Plugins can be configured to establish key bindings
+  --
+  -- tmux-navigator: enable seamless C-hjkl navigation between nvim and tmux panes
+  {
+    'christoomey/vim-tmux-navigator',
+    -- {{{
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+    -- }}}
+  },
+
+  { -- lualine
+    'nvim-lualine/lualine.nvim',
+    -- {{{
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      -- see more themes at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+      options = { theme = 'codedark' },
+    },
+    -- }}}
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
