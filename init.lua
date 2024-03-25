@@ -259,12 +259,13 @@ require('lazy').setup({
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
+
   --
   -- Use `opts = {}` to force a plugin to be loaded.
   --
   --  This is equivalent to:
-  --    require('Comment').setup({})
-
+  --    require('Comment').setup({}) OR config=true
+  --
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -819,12 +820,10 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     -- {{{
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup {
-        -- see more themes at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-        options = { theme = 'codedark' },
-      }
-    end,
+    opts = {
+      -- see more themes at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+      options = { theme = 'codedark' },
+    },
     -- }}}
   },
 
