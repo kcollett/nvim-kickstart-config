@@ -85,6 +85,11 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 }}}
 
+NOTE:
+
+    You can sart neovim with alternate config using NVIM_APPNAME environment variable.
+    e.g. 'NVIM_APPNAME="nvim-kickstart" nvim'
+
 NOTE: Folding Commands:
 
     zo open  fold under cursor
