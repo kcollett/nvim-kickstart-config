@@ -84,6 +84,14 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 }}}
+
+NOTE: Folding Commands:
+
+    zo open  fold under cursor
+    zc close   "    "     "
+    zR open  all folds in file
+    zM close  "    "    "  "
+
 --]]
 
 -- BASICS {{{
@@ -119,7 +127,10 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- turn on wrapping but only at word boundaries
+vim.opt.wrap = true
+vim.opt.linebreak = true
+-- indent wrapped lines
 vim.opt.breakindent = true
 
 -- Save undo history
@@ -800,6 +811,7 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup {
+        -- see more themes at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
         options = { theme = 'codedark' },
       }
     end,
