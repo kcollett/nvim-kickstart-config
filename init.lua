@@ -150,6 +150,15 @@ vim.opt.updatetime = 250
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 500
 
+-- turn on advanced mode for command-line completion
+-- navigate to previous/next with C-n / C-p
+-- hierarchy navigation: <Up> / <Down> / <CR>
+-- say "yes" to completion with C-y, end with C-e
+vim.opt.wildmenu = true
+-- There are certain files that we would never want to edit with Vim.
+-- Wildmenu will ignore files with these extensions.
+vim.opt.wildignore = '*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx'
+
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -164,7 +173,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+-- NOTE: My cursor is very red, so I'm turning this off for now.
+--vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 4
