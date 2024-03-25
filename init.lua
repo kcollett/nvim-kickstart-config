@@ -264,7 +264,7 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
   --  This is equivalent to:
-  --    require('Comment').setup({}) OR config=true
+  --    require('Comment').setup({}) OR config = true
   --
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -874,6 +874,11 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
   --
   -- NOTE: For now, I'm trying to keep everything in this file
+
+  { -- nice hook for vim.ui_select and vim.ui.input
+    'stevearc/dressing.nvim',
+    config = true,
+  },
 
   { -- enable seamless C-hjkl navigation between nvim and tmux panes
     'christoomey/vim-tmux-navigator',
