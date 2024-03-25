@@ -875,10 +875,7 @@ require('lazy').setup({
   --
   -- NOTE: For now, I'm trying to keep everything in this file
 
-  -- NOTE: Plugins can be configured to establish key bindings
-  --
-  -- tmux-navigator: enable seamless C-hjkl navigation between nvim and tmux panes
-  {
+  { -- enable seamless C-hjkl navigation between nvim and tmux panes
     'christoomey/vim-tmux-navigator',
     -- {{{
     cmd = {
@@ -898,7 +895,16 @@ require('lazy').setup({
     -- }}}
   },
 
-  { -- lualine
+  { -- use <leader>sm to toggle pane maximization
+    'szw/vim-maximizer',
+    -- {{{
+    keys = {
+      { '<leader>sm', '<cmd>MaximizerToggle<CR>' },
+    },
+    -- }}}
+  },
+
+  { -- theme glow up for status line
     'nvim-lualine/lualine.nvim',
     -- {{{
     dependencies = { 'nvim-tree/nvim-web-devicons' },
